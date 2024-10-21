@@ -14,7 +14,7 @@ AC_DEFUN([AX_LUSTRE_VERSION],
             # Assume we want the same version as this package,
             # whatever 'lustre' or 'lustre-client'
             AC_MSG_CHECKING(Lustre version)
-            LVERSION=`rpm -q --whatprovides lustre-client --qf "%{Version}\n" 2>/dev/null | grep -v "no package" | cut -d "." -f 1-2`
+            LVERSION=`rpm -q --whatprovides lustre-client --qf "%{Name}.%{Version}\n" 2>/dev/null  | grep -v -e "no package" -e "dkms" | cut -d "." -f 2-3`
             AC_MSG_RESULT($LVERSION)
         else
             AC_MSG_RESULT(no)
